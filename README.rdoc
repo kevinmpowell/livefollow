@@ -1,5 +1,8 @@
 = Livefollow
 
+What is Livefollow?
+Livefollow (inspired by Shim and LiveReload) is a Rails Engine that utilizes some simple JavaScript polling to keep multiple browsers/devices on the same url as you navigate around a site. Useful for prototyping, front-end development, or QA process where you need to test on multiple devices.
+
 Installation (Rails Only)
 
 Step 1:
@@ -17,3 +20,6 @@ mount Livefollow::Engine => "/livefollow"
 Step 3:
 Finally in your application.js add the following:
 //= require livefollow/livefollow
+
+Usage
+Start up your rails application
