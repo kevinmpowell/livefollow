@@ -3,6 +3,7 @@ module Livefollow
     URL_TEXT_FILE = "#{Livefollow::Engine.root}/lib/livefollow_url.txt"
 
     def set_url
+      puts params.to_yaml
       url = params[:pathname]
       unless params[:format].nil?
         url = url + ".#{params[:format]}"

@@ -1,13 +1,22 @@
+if (typeof String.prototype.startsWith != 'function') {
+  // see below for better implementation!
+  String.prototype.startsWith = function (str){
+    return this.indexOf(str) == 0;
+  };
+}
+
 $(document).ready(function(){
   $("body").on("click", "a", function(e){
-    e.preventDefault();
     var url = $(this).attr("href");
-    $.ajax({
-      url: '/livefollow/set_url/' + encodeURIComponent(url),
-      success: function() {
-        window.location = url;
-      }
-    });
+    if (!url.startsWith('#')) {
+      e.preventDefault();
+      $.ajax({
+        url: '/livefollow/set_url/' + encodeURIComponent(url),
+        success: function() {
+          window.location = url;
+        }
+      });      
+    }
   });
 
   if(window.location.hash && window.location.hash == '#!') {
