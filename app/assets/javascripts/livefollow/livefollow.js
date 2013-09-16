@@ -14,10 +14,8 @@ $(document).ready(function(){
     $.cookie('livefollow_status', 'enabled');
     alert("Livefollow enabled for this browser/session");
   }
-  console.log(typeof $.cookie('livefollow_status'));
-  console.log($.cookie('livefollow_status'));
 
-  if (typeof $.cookie('livefollow_status') == undefined || $.cookie('livefollow_status') == 'enabled') {
+  if (typeof $.cookie('livefollow_status') == 'undefined' || $.cookie('livefollow_status') == 'enabled') {
     $("body").on("click", "a", function(e){
       var url = $(this).attr("href");
       if (!url.startsWith('#')) {
@@ -27,7 +25,7 @@ $(document).ready(function(){
           success: function() {
             window.location = url;
           }
-        });      
+        });
       }
     });
 
@@ -48,7 +46,6 @@ $(document).ready(function(){
 function poll_for_url_update(){
   var current_url = window.location.pathname;
   window.setInterval(function(){
-    console.log("polling");
     $.ajax({
       url: '/livefollow/get_url',
       success: function(data) {

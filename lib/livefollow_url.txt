@@ -1,1 +1,1 @@
-template.news-article.html
+/movies
