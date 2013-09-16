@@ -1,1 +1,1 @@
-a05.html
+template.news-article.html
