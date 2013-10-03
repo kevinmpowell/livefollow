@@ -13,7 +13,7 @@
 		// Browser globals.
 		factory(jQuery);
 	}
-}(function ($) {
+}(function ($lfjq) {
 
 	var pluses = /\+/g;
 
@@ -41,11 +41,11 @@
 		} catch(e) {}
 	}
 
-	var config = $.cookie = function (key, value, options) {
+	var config = $lfjq.cookie = function (key, value, options) {
 
 		// Write
 		if (value !== undefined) {
-			options = $.extend({}, config.defaults, options);
+			options = $lfjq.extend({}, config.defaults, options);
 
 			if (typeof options.expires === 'number') {
 				var days = options.expires, t = options.expires = new Date();
@@ -71,7 +71,7 @@
 
 		// To prevent the for loop in the first place assign an empty array
 		// in case there are no cookies at all. Also prevents odd result when
-		// calling $.cookie().
+		// calling $lfjq.cookie().
 		var cookies = document.cookie ? document.cookie.split('; ') : [];
 
 		for (var i = 0, l = cookies.length; i < l; i++) {
@@ -95,10 +95,10 @@
 
 	config.defaults = {};
 
-	$.removeCookie = function (key, options) {
-		if ($.cookie(key) !== undefined) {
+	$lfjq.removeCookie = function (key, options) {
+		if ($lfjq.cookie(key) !== undefined) {
 			// Must not alter options, thus extending a fresh object...
-			$.cookie(key, '', $.extend({}, options, { expires: -1 }));
+			$lfjq.cookie(key, '', $lfjq.extend({}, options, { expires: -1 }));
 			return true;
 		}
 		return false;

@@ -5,22 +5,22 @@ if (typeof String.prototype.startsWith != 'function') {
   };
 }
 
-$(document).ready(function(){
+$lfjq(document).ready(function(){
   if(window.location.hash && window.location.hash == '#lfdisable') {
-    $.cookie('livefollow_status', 'disabled');
+    $lfjq.cookie('livefollow_status', 'disabled');
     alert("Livefollow disabled for this browser/session");
   }
   else if (window.location.hash && window.location.hash == '#lfenable'){
-    $.cookie('livefollow_status', 'enabled');
+    $lfjq.cookie('livefollow_status', 'enabled');
     alert("Livefollow enabled for this browser/session");
   }
 
-  if (typeof $.cookie('livefollow_status') == 'undefined' || $.cookie('livefollow_status') == 'enabled') {
-    $("body").on("click", "a", function(e){
-      var url = $(this).attr("href");
+  if (typeof $lfjq.cookie('livefollow_status') == 'undefined' || $lfjq.cookie('livefollow_status') == 'enabled') {
+    $lfjq("body").on("click", "a", function(e){
+      var url = $lfjq(this).attr("href");
       if (!url.startsWith('#')) {
         e.preventDefault();
-        $.ajax({
+        $lfjq.ajax({
           url: '/livefollow/set_url/' + encodeURIComponent(url),
           success: function() {
             window.location = url;
@@ -30,7 +30,7 @@ $(document).ready(function(){
     });
 
     if(window.location.hash && window.location.hash == '#!') {
-      $.ajax({
+      $lfjq.ajax({
         url: '/livefollow/set_url/' + encodeURIComponent(window.location.pathname),
         success: function() {
           poll_for_url_update();
@@ -46,7 +46,7 @@ $(document).ready(function(){
 function poll_for_url_update(){
   var current_url = window.location.pathname;
   window.setInterval(function(){
-    $.ajax({
+    $lfjq.ajax({
       url: '/livefollow/get_url',
       success: function(data) {
         if (data.charAt(0) !== "/") {
