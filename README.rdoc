@@ -20,7 +20,7 @@ mount Livefollow::Engine => "/livefollow"
 
 Step 3:
 Finally in your application.js add the following:
-//= require livefollow/livefollow
+//= require livefollow/application
 
 Usage
 Start up your rails application
